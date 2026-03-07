@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:wght@300;400;600&family=Share+Tech&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --font-oswald: "Oswald", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-share: "Share Tech", sans-serif;
+
+  --color-primary: var(--primary);
+  --color-background: var(--bg-app);
+  --color-card: var(--bg-card);
+  --color-main: var(--text-main);
+  --color-secondary: var(--text-secondary);
+  --color-urgent: var(--red-500);
+  --color-upcoming: var(--yellow-500);
+  --color-far: var(--green-500);
+  --color-border-line: var(--border-color);
+  --background-image-pattern: var(--bg-image);
+}
+
+:root {
+  --primary: #3b82f6;
+  --bg-app: #f8fafc;         
+  --bg-card: #ffffff;        
+  --text-main: #0f172a;      
+  --text-secondary: #64748b; 
+  --red-500: #ef4444;        
+  --yellow-500: #eab308;     
+  --green-500: #22c55e;      
+  --border-color: #e2e8f0;
+  --bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%230f172a' fill-opacity='0.05'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.dark {
+  --bg-app: #0f172a;       
+  --bg-card: #1e293b;      
+  --text-main: #f8fafc;    
+  --text-secondary: #94a3b8; 
+  --border-color: #334155; 
+  --red-500: #f87171;      
+  --yellow-500: #fbbf24;   
+  --green-500: #4ade80;
+  --bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23f8fafc' fill-opacity='0.05'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+body {
+  font-family: var(--font-poppins);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  margin: 0;
+  min-height: 100vh;
+}
