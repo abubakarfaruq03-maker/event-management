@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export default function Header({ onAddClick }: HeaderProps) {
     return (
-        <header className="flex justify-between items-center mt-4 sm:mt-0 md:mx-20 mx-8 p-4 sm:p-8 gap-4 sm:gap-0">
+        <header className="flex justify-between items-center mt-4 sm:mt-0 md:mx-20 mx-6 p-4 sm:p-8 gap-4 sm:gap-0">
             <div className="flex flex-col">
                 <p className="text-main text-4xl font-share tracking-tighter leading-none">
                     Eventify
