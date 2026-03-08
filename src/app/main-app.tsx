@@ -15,10 +15,12 @@ interface MainProps {
 export default function Main({ events, setEvents }: MainProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<string>("");
   const location = useLocation();
 
   useEffect(() => {
     if (location.state?.editSuccess) {
+      setSuccessMessage("Event updated successfully")
       setShowSuccess(true);
       
       const timer = setTimeout(() => setShowSuccess(false), 3000);
@@ -40,6 +42,7 @@ export default function Main({ events, setEvents }: MainProps) {
     setIsSidebarOpen(false);
 
     // Trigger Success Toast
+    setSuccessMessage("Event created successfully");
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);
   };
@@ -58,7 +61,7 @@ export default function Main({ events, setEvents }: MainProps) {
           <div className="bg-white/20 rounded-full p-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
           </div>
-          <span className="font-oswald text-lg uppercase">Event updated successfully</span>
+          <span className="font-oswald text-lg uppercase">{successMessage}</span>
         </div>
       </div>
 
