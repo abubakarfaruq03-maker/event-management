@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router";
 import EventForm from "../components/EventForm";
 import EventCard from "../components/EventCard";
 import Header from "../components/Header";
@@ -14,6 +15,18 @@ interface MainProps {
 export default function Main({ events, setEvents }: MainProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.editSuccess) {
+      setShowSuccess(true);
+      
+      const timer = setTimeout(() => setShowSuccess(false), 3000);
+      window.history.replaceState({}, document.title);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
 
   // --- LOGIC UPDATED TO USE PROPS ---
   const handleAddEvent = (formData: EventFormData): void => {
