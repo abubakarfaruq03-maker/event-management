@@ -27,12 +27,15 @@ export default function EventForm({ onClose, onSubmit, initialData }: EventFormP
         return new Date(`${date}T${time}:00`);
     };
 
+// IF TIME SET HAS PASSED
     const isPast = () => {
         const target = getTargetDateTime().getTime();
         const now = new Date().getTime();
         if (isNaN(target)) return false; 
         return target - now <= 0;
     };
+
+    // COUNTDOWN LOGIC
 
     const getCountdownPreview = () => {
         const target = getTargetDateTime();

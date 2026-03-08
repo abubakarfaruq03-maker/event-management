@@ -22,7 +22,7 @@ export default function EventCard({ data, onDelete }: EventCardProps) {
     });
 
     const progress = timeLeft.progress;
-    const currentStatus = progress > 70 ? "urgent" : progress > 50 ? "upcoming" : "far";
+    const currentStatus = progress > 70 ? "urgent" : progress > 40 ? "upcoming" : "far";
 
     useEffect(() => {
         const calculateTime = () => {
@@ -88,7 +88,7 @@ export default function EventCard({ data, onDelete }: EventCardProps) {
                     <span className="text-secondary text-[10px] uppercase font-black tracking-widest mb-3 block">
                         {timeLeft.isExpired ? "Status" : "Time Remaining"}
                     </span>
-
+                      {/* COUNTDOWN RUNS TO 0 */}
                     <div className="flex gap-2 min-h-16">
                         {timeLeft.isExpired ? (
                             <div className="flex-1 flex items-center justify-between bg-urgent/10 border border-urgent/30 rounded-2xl px-5 py-3 animate-in fade-in zoom-in duration-500">
@@ -108,6 +108,7 @@ export default function EventCard({ data, onDelete }: EventCardProps) {
                                     </button>
                                 )}
                             </div>
+                            // COUNTDOWN LOGIC
                         ) : (
                             <>
                                 <TimeUnit value={timeLeft.days} label="Days" variant="normal" />
