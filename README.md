@@ -53,5 +53,3 @@ With more time, I’d move this from a "utility" to a "platform":
 
 ---
 
-**Would you like me to add a "How to Install" section to this README so others can run it locally?**
-```
