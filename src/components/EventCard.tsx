@@ -62,7 +62,7 @@ export default function EventCard({ data, onDelete }: EventCardProps) {
 
     const getProgressBarColor = () => {
         if (timeLeft.progress > 70) return "bg-urgent";
-        if (timeLeft.progress > 50) return "bg-upcoming";
+        if (timeLeft.progress > 40) return "bg-upcoming";
         return "bg-far";
     };
 
