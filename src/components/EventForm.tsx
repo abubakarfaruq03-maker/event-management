@@ -21,21 +21,16 @@ export default function EventForm({ onClose, onSubmit, initialData }: EventFormP
 
     const placeholders = ["Launches", "Birthdays", "Deadlines", "Meetings", "Dates", "Festival", "Movie Release"];
 
-    // Standardized parser to handle 24h mobile input
     const getTargetDateTime = () => {
-        //  the YYYY-MM-DDTHH:mm format for mobile browsers
         return new Date(`${date}T${time}:00`);
     };
 
-// IF TIME SET HAS PASSED
     const isPast = () => {
         const target = getTargetDateTime().getTime();
         const now = new Date().getTime();
         if (isNaN(target)) return false; 
         return target - now <= 0;
     };
-
-    // COUNTDOWN LOGIC
 
     const getCountdownPreview = () => {
         const target = getTargetDateTime();
@@ -50,12 +45,12 @@ export default function EventForm({ onClose, onSubmit, initialData }: EventFormP
         return `${days} days, ${hours} hours, and ${mins} minutes`;
     };
 
-    const handleSubmit = (e: React.MouseEvent | React.FormEvent) => {
-        e.preventDefault();
+    // Changed to handle React.FormEvent from the <form> tag
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault(); 
         
         let hasError = false;
 
-        // 1. Validate Name
         if (!name.trim()) {
             setError(true);
             hasError = true;
@@ -86,7 +81,10 @@ export default function EventForm({ onClose, onSubmit, initialData }: EventFormP
     };
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-right duration-500 pb-10">
+        <form 
+            onSubmit={handleSubmit} 
+            className="space-y-8 animate-in fade-in slide-in-from-right duration-500 pb-10"
+        >
             {/* 1. TITLE SECTION */}
             <div className={`group ${error ? "animate-shake" : ""}`}>
                 <div className="flex justify-between items-center mb-2">
@@ -178,20 +176,19 @@ export default function EventForm({ onClose, onSubmit, initialData }: EventFormP
             {/* 4. ACTIONS */}
             <div className="pt-6 flex flex-col gap-3">
                 <button
-                    type="button"
-                    onClick={handleSubmit}
+                    type="submit" /* Changed to submit to work with the form tag */
                     className="px-8 py-4 rounded-full font-bold text-white bg-primary hover:scale-[1.01] active:scale-95 transition-all cursor-pointer text-lg uppercase tracking-widest shadow-lg shadow-primary/20 touch-manipulation"
                 >
                     {initialData ? "Save Changes" : "Add Event"}
                 </button>
                 <button
-                    type="button"
+                    type="button" /* Kept as button so it doesn't trigger the submit */
                     onClick={onClose}
                     className="w-full py-3 rounded-xl font-bold text-secondary hover:text-urgent transition-colors cursor-pointer text-sm"
                 >
                     {initialData ? "Cancel" : "Discard Draft"}
                 </button>
             </div>
-        </div>
+        </form>
     );
 }
